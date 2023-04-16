@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Sesli Okuyucu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.min.css" />
+</head>
+<body>
+    <h1>PDF Sesli Okuyucu</h1>
+    <input type="file" id="pdfInput" accept=".pdf" />
+    <br>
+    <button id="startReading">Okumaya Başla</button>
+    <button id="pauseReading">Durdur</button>
+    <button id="resumeReading">Devam Et</button>
+    <button id="continueFromCurrentPage">Buradan Devam Et</button>
+    <br>
+    <div id="pdfViewerContainer" style="position: absolute; height: 600px; overflow: auto;">
+        <div id="pdfViewer" class="pdfViewer" style="position: absolute;"></div>
+    </div>
+    
+<!-- Other code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+</script>
+<script src="app.js"></script>
+</body>
+</html>
