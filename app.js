@@ -61,34 +61,34 @@ async function readPdfFileFromPage(file, startPage) {
         return textContent;
         }
         
-        function startTextToSpeech(text, startIndex) {
-        synthesis.cancel();
-        let utterances = createUtterances(text, startIndex);
-        utterances.forEach((utterance, index) => {
-        utterance.onend = () => {
-        currentSpeechIndex = index + 1;
-        };
-        synthesis.speak(utterance);
-        });
-        }
-        
-        function createUtterances(text, startIndex) {
-        let sentences = text.match(/[^.!?]+[.!?]+/g) || [];
-        let utterances = [];
-        for (let i = startIndex; i < sentences.length; i++) {
-        let sentence = sentences[i].trim();
-        let utterance = new SpeechSynthesisUtterance(sentence);
-        utterance.lang = detectLanguage(sentence);
-        utterances.push(utterance);
-        }
-        return utterances;
-        }
-        
-        function detectLanguage(text) {
-        const turkishLetters = 'şŞıİğĞüÜöÖçÇ';
-        const englishLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let turkishCount = 0;
-        let englishCount = 0;
+ function startTextToSpeech(text, startIndex) {
+ synthesis.cancel();
+ let utterances = createUtterances(text, startIndex);
+ utterances.forEach((utterance, index) => {
+ utterance.onend = () => {
+ currentSpeechIndex = index + 1;
+ };
+ synthesis.speak(utterance);
+ });
+ }
+ 
+ function createUtterances(text, startIndex) {
+ let sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+ let utterances = [];
+ for (let i = startIndex; i < sentences.length; i++) {
+ let sentence = sentences[i].trim();
+ let utterance = new SpeechSynthesisUtterance(sentence);
+ utterance.lang = detectLanguage(sentence);
+ utterances.push(utterance);
+ }
+ return utterances;
+ }
+ 
+ function detectLanguage(text) {
+ const turkishLetters = 'şŞıİğĞüÜöÖçÇ';
+ const englishLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ let turkishCount = 0;
+ let englishCount = 0;
         for (let i = 0; i < text.length; i++) {
             if (turkishLetters.includes(text[i])) {
                 turkishCount++;
@@ -98,8 +98,8 @@ async function readPdfFileFromPage(file, startPage) {
         }
         
         return turkishCount > englishCount ? 'tr-TR' : 'en-US';
-    }
-    async function loadPdfToViewer(file) {
-        const pdf = await pdfjsLib.getDocument(URL.createObjectURL(file)).promise;
-        pdfViewer.setDocument(pdf);
-        }
+}
+async function loadPdfToViewer(file) {
+    const pdf = await pdfjsLib.getDocument(URL.createObjectURL(file)).promise;
+    pdfViewer.setDocument(pdf);
+}
